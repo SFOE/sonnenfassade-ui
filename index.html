@@ -1,0 +1,524 @@
+<!DOCTYPE HTML>
+<!--
+	Photon by HTML5 UP
+	html5up.net | @n33co
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Wie viel Strom und Wärme kann mein Dach produzieren?</title>
+		<meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, minimal-ui"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <meta name="application-name" content="sonnendach"/>
+    
+    <!-- Application icons -->
+    <meta name="msapplication-TileImage" content="images/touch-icon-bund-144x144.png"/>
+    <meta name="msapplication-TileColor" content="#ffffff"/>
+    <meta name="msapplication-square70x70logo" content="images/touch-icon-bund-70x70.png"/>
+    <meta name="msapplication-square150x150logo" content="images/touch-icon-bund-150x150.png"/>
+    <meta name="msapplication-square310x310logo" content="images/touch-icon-bund-310x310.png"/>
+    <link rel="apple-touch-icon" sizes="76x76" href="images/touch-icon-bund-76x76.png"/>
+    <link rel="apple-touch-icon" sizes="120x120" href="images/touch-icon-bund-120x120.png"/>
+    <link rel="apple-touch-icon" sizes="152x152" href="images/touch-icon-bund-152x152.png"/>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <meta name="description" content="Wie viel Strom und Wärme kann mein Dach produzieren? Finden Sie es heraus mit Sonnendach.ch">
+    <meta name="keywords" content="Solar, Energie, Dach, Sonne, Photovoltaik, Solarthermie, Solarwärme, Sonnendach, Strom, Solarstrom, Sonnenstrom">
+    <meta name="news_keywords" content="Solar, Energie, Dach, Sonne, Photovoltaik, Solarthermie, Solarwärme, Sonnendach, Strom, Solarstrom, Sonnenstrom">
+    <meta name="author" content="Bundesamt für Energie BFE">
+
+    <meta property="og:site_name" content="Sonnendach.ch">
+    <meta property="og:title" content="Wie viel Strom und Wärme kann mein Dach produzieren?">
+    <meta property="og:description" content="Wie viel Strom und Wärme kann mein Dach produzieren? Finden Sie es heraus mit Sonnendach.ch.">
+    <meta property="og:type" content="WebApplication">
+    <meta property="og:url" content="http://www.sonnendach.ch">
+    <meta property="og:image" content="http://www.bfe-gis.admin.ch/sonnendach/images/appSonnendachCH.png">
+    <meta property="og:locale" content="de_CH" />
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@EnergieSchweiz">
+		<meta name="twitter:creator" content="@EnergieSchweiz">
+    <meta name="twitter:title" content="Sonnendach.ch">
+    <meta name="twitter:description" content="Wie viel Strom und Wärme kann mein Dach produzieren? Finden Sie es heraus mit Sonnendach.ch.">
+    <meta name="twitter:image" content="http://www.bfe-gis.admin.ch/sonnendach/images/appSonnendachCH.png">
+    <meta name="twitter:url" content="http://www.sonnendach.ch">
+
+
+    <!-- CSS -->
+    <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+    <link rel="stylesheet" href="assets/css/map.css"/>
+    <link rel="stylesheet" href="assets/css/barchart.css"/>
+	</head>
+	<body class="is-loading">
+	  
+    <!-- Hidden links to navigate smoothly in the page using scrolly plugin -->
+    <div style="display: none;">
+      <a id="goToEig" href="#eig" class="scrolly"></a>
+      <a id="goToHeader" href="#header" class="scrolly"></a>
+      <a id="goToOne" href="#one" class="scrolly"></a>
+      <a id="goToTwo" href="#two" class="scrolly"></a>
+      <a id="goToThree" href="#three" class="scrolly"></a>
+      <a id="goToFour" href="#four" class="scrolly"></a>
+      <a id="goToFive" href="#five" class="scrolly"></a>
+      <a id="goToSix" href="#six" class="scrolly"></a>
+      <a id="goToSeven" href="#seven" class="scrolly"></a>
+      <a id="goToEight" href="#eight" class="scrolly"></a>
+      <a id="goToNine" href="#nine" class="scrolly"></a>
+      <a id="goToTen" href="#ten" class="scrolly"></a>
+      <a id="goToEleven" href="#eleven" class="scrolly"></a>
+
+    </div>
+
+	  <!-- eid -->
+    <section id="eig" class="main style1 special hide" style="padding: 0 !important">
+      <div class="container">
+        <div class="100%">
+          <div class="logo"></div>
+          <div class="amts">
+            <div class="amt trn">bfe</div>
+            <div class="amt trn">meteoschweiz</div>
+            <div class="amt trn">swisstopo</div>
+            <div class="amt-abbr">
+              <span class="trn">bfeAbbr</span>,&nbsp;
+              <span class="trn">meteoschweizAbbr</span>,&nbsp;
+              <span class="trn">swisstopoAbbr</span>
+            </div>
+          </div>
+          <div id="lang">
+            <a href="?lang=de" class="langde">D</a>|<a href="?lang=fr" class="langfr">F</a>|<a href="?lang=it" class="langfr">I</a>|<a href="?lang=en" class="langfr">E</a>
+          </div>
+        </div>
+      </div>
+    </section>	
+	
+	  <!-- red -->
+    <section id="red" class="hide" style="background-color: red; height: 5px; line-height: 5px;">
+      <div class="container">
+        <div class="row 150%">
+          <div class="12u 12u$(medium)" style="padding: 0 0 0 2.25em !important">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- eCH Header -->
+    <section id="ech" class="main style1 special hide" style="padding: 0 !important">
+      <div class="container">
+        <div class="100%">
+            <a href="http://www.energieschweiz.ch" target="_blank"><div class="logoech" id="logoech"></div></a>
+          <div id="lang">
+            <a href="?lang=de&header=1" class="langde">D</a>|<a href="?lang=fr&header=1" class="langfr">F</a>|<a href="?lang=it&header=1" class="langfr">I</a>|<a href="?lang=en&header=1" class="langfr">E</a>
+          </div>
+        </div>
+      </div>
+    </section>    
+
+    <!-- orange -->
+    <section id="orange" class="hide" style="background-color: rgb(245,82,10); height: 5px; line-height: 5px;">
+      <div class="container">
+        <div class="row 150%">
+          <div class="12u 12u$(medium)">
+          </div>
+        </div>
+      </div>
+    </section>  
+
+		<!-- Header -->
+    <section id="header">
+      <div class="inner">
+        <span class="icon major fa-sun-o"></span>
+        <h1 class="trn">mainTitle</h1>
+        <ul class="actions">
+          <li>
+            <span class="search-container">
+              <input class="typeahead" id="searchTypeahead1" type="text"
+                     data-provide="typeahead"
+                     placeholder="Suchen Sie Ihre Adresse..." >
+              <i class="fa fa-search"></i>
+            </span>
+            <a id="location" href="#one" class="button scrolly trn">locateMe</a>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+		<!-- One: Karte und Adresssuche-->
+    <section id="one" class="main style1">
+      <div class="container">
+        <div class="row 150%">
+          <div class="6u 12u$(medium)">
+            <header class="major">
+              <h2 class="show-localized-error" id="locationError"></h2>
+              <h2 class="hidden-localized hidden-localized-error trn">notLocalised</h2>
+              <h2 class="show-localized" id="addressOutput"></h2>
+              <div class="address-loading"></div>
+            </header>
+            <header class="major">
+              <!-- Keine Adresse gefunden -->
+              <h4 class="hidden-localized trn">bittelokal</h4>
+              <h4 class="show-no-roof trn">noRoofFound</h4> <!-- Keine Adresse, Kein Dach, in Abdeckung -->
+              <h4 class="show-no-roof-outside-perimeter trn">noRoofFoundOutsidePerimeter</h4> <!-- Adresse, Ausserhalb Abdeckung -->
+              <h4 class="show-roof"> <!-- Dach gefunden, Adresse gefunden -->
+                <ul class="actions uniform show-roof">
+                  <li>
+                    <a href="#two" id="eignungbutton2" class="button2 scrolly button2suit5">
+                      <span class="trn">eignungTitel</span>: <span id="eignung"></span>
+                    </a>
+                  </li>
+                </ul>
+                <ul class="actions uniform show-roof">
+                  <li>
+                    <a href="#three" class="button2 scrolly" id="PVbuttonText"></a>
+                  </li>
+                </ul>
+                <ul id="thermiebutton" class="actions uniform hide-thermie">
+                  <li>
+                    <a href="#four" class="button2 scrolly" id="thermiebuttonText"></a>
+                  </li>
+                </ul>
+              </h4>
+              <div class="roof-loading"></div>
+            </header>
+            <p>
+            <span class="search-container">
+              <input class="typeahead" id="searchTypeahead2" type="text"
+                     data-provide="typeahead"
+                     placeholder="Suchen Sie Ihre Adresse..." >
+              <i class="fa fa-search"></i>
+            </span>
+            </p>
+          </div>
+          <div class="6u$ 12u$(medium) important(medium)">
+            <div id="map" style="width: 100%; height: 360px;"></div>
+          </div>
+        </div>
+        <div class="12u$ 12u$(medium) important(medium) show-roof arrows">
+          <a href="#two" class="scrolly icon major fa-angle-double-down"></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Two: Eignung -->
+    <section id="two" class="main style2 show-roof">
+      <div class="container">
+        <div class="row 150%">
+          <div class="6u 12u$(medium)">
+            <center><img src="images/s1.png" id="eignungSymbol"></center>
+          </div>
+          <div class="6u$ 12u$(medium)">
+            <header class="major">
+              <h2 class="show-roof"><strong><span class="trn">eignungTitel</span>: 
+                <span id="eignung3"></span></strong></h2>
+            </header>
+            <p class="show-roof">
+              <span id="eignungText"></span>
+            </p>
+          </div>
+        </div>
+        <div class="12u$ 12u$(medium) important(medium) show-roof arrows">
+          <a href="#three" class="scrolly icon major fa-angle-double-down"></a>
+        </div>
+      </div>
+    </section>
+
+		<!-- Three: Solarstrom -->
+    <section id="three" class="main style1 special show-roof">
+      <div class="container">
+        <header class="major">
+          <span class="icon major fa-plug"></span>
+          <h2 id="TitelSolarstrom"></h2>     
+        </header>
+        <p class="show-roof"><span class="trn">solarstromText</span></p>
+
+          <div class="row 150%">
+            <div class="4u 12u$(medium)">
+              <h1 style="margin: 0 0 0.2em 0 !important;"><span id="pv100"></span>&nbsp;kWh</h1>
+              <img id="pvpic1" src="" style="width:200px">
+              <h3><span class="trn" id="pv100text">pv100text</span></h3>
+              <ul class="actions uniform show-roof">
+                <li>
+                  <a href="" class="button" id="buttonSolRPV100" target="_blank">
+                    <span class="trn">solarstromButton</span>
+                  </a>
+                </li>
+              </ul>              
+            </div>
+            <div class="4u 12u$(medium)">
+              <h1 style="margin: 0 0 0.2em 0 !important;"><span id="pv75"></span>&nbsp;kWh</span></h1>
+              <img id="pvpic2" src="" style="width:200px">
+              <h3><span class="trn" id="pv75text">pv75text</span></h3>
+              <ul class="actions uniform show-roof">
+                <li>
+                  <a href="" class="button" id="buttonSolRPV75" target="_blank">
+                    <span class="trn">solarstromButton</span>
+                  </a>
+                </li>
+              </ul>  
+            </div>
+            <div class="4u$ 12u$(medium)">
+              <h1 style="margin: 0 0 0.2em 0 !important;"><span id="pv50"></span>&nbsp;kWh</h1>
+              <img id="pvpic3" src="" style="width:200px">
+              <h3><span class="trn" id="pv50text">pv50text</span></h3>
+              <ul class="actions uniform show-roof">
+                <li>
+                  <a href="" class="button" id="buttonSolRPV50" target="_blank">
+                    <span class="trn">solarstromButton</span>
+                  </a>
+                </li>
+              </ul>  
+            </div>
+          </div>
+
+        <div class="12u$ 12u$(medium) important(medium) show-roof arrows">
+          <a href="#four" class="scrolly icon major fa-angle-double-down"></a>
+        </div>
+      </div>
+    </section>
+
+		<!-- Four: Solarthermie -->
+    <section id="four" class="main style2 special show-roof">
+      <div class="container">
+        <header class="major">
+          <span class="icon major fa-building"></span>&nbsp;&nbsp;&nbsp;&nbsp;
+          <span class="icon major fa-tint"></span>
+          <h2 id="heatTitle"></h2>
+        </header>
+        <p class="show-roof">
+          <span id="heatText"></span>
+        </p>
+        <ul class="actions uniform show-roof">
+          <li><a href="http://www.energieschweiz.ch/de-ch/erneuerbare-energien/meine-solaranlage/solarrechner.aspx" class="button" id="buttonSolRThermie" target="_blank"><span class="trn">solarthermieButton</span></a></li>
+        </ul>      
+        <div class="12u$ 12u$(medium) important(medium) show-roof arrows">
+          <a href="#five" class="scrolly icon major fa-angle-double-down"></a>
+        </div>          
+      </div>
+    </section>
+
+    <!-- Five: Ihre Dachflaeche -->
+      <section id="five" class="main style1 special show-roof">
+        <div class="container">
+          <header class="major">
+            <span class="icon major fa-home"></span>
+            <h2><span class="trn">yourRoof</span></h2>
+          </header>
+          <div class="row 150%">
+            <div class="4u 12u$(medium)">
+              <h1 style="margin: 0 0 0.2em 0 !important;"><span id="pitchOutput"></span>&deg;</h1>
+              <h3><span class="trn">roofInclination</span></h3>
+            </div>
+            <div class="4u 12u$(medium)">
+              <h1 style="margin: 0 0 0.2em 0 !important;"><span id="headingOutput"></span>&deg;&nbsp;<span id="headingText"></span></h1>
+              <h3><span class="trn">roofOrientation</span></h3>
+            </div>
+            <div class="4u$ 12u$(medium)">
+              <h1 style="margin: 0 0 0.2em 0 !important;"><span id="areaOutput"></span>&nbsp;m<sup>2</sup></h1>
+              <h3><span class="trn">roofArea</span></h3>
+            </div>
+          </div>        
+          <div class="12u$ 12u$(medium) important(medium) show-roof arrows">
+            <a href="#six" class="scrolly icon major fa-angle-double-down"></a>
+          </div>          
+        </div>
+      </section>
+
+    <!-- Six: Einstrahlung auf Ihre Dachflaeche -->
+      <section id="six" class="main style2 special show-roof">
+        <div class="container">
+          <header class="major">
+            <span class="icon major fa-sun-o"></span>
+            <h2><span class="trn">yourRoofEinstrahlung</span></h2>
+          </header>
+          <div class="row 150%">
+            <div class="6u 12u$(medium)">
+              <h1 style="margin: 0 0 0.2em 0 !important;"><span id="mstrahlungOutput"></span> kWh/m<sup>2</sup></h1>
+              <h3><span class="trn">roofmstrahlung</span></h3>
+            </div>
+            <div class="6u 12u$(medium)">
+              <h1 style="margin: 0 0 0.2em 0 !important;"><span id="gstrahlungOutput"></span> kWh</h1>
+              <h3><span class="trn">roofgstrahlung</span></h3>
+            </div>
+          </div>          
+          <div class="12u$ 12u$(medium) important(medium) show-roof arrows">
+            <a href="#seven" class="scrolly icon major fa-angle-double-down"></a>
+          </div>          
+        </div>
+      </section>
+
+    <!-- Seven: Graph -->
+      <section id="seven" class="main style1 special show-roof">
+        <div class="container">
+          <header class="major">
+            <span class="icon major fa-bar-chart"></span>
+            <!--<span class="icon major fa-sun-o" style="width:400px;color:rgb(233,81,31);"></span>-->
+            <h2><span class="trn">graphTitel</span></h2>
+          </header>
+          <p></p>
+            <div id="chart"></div>
+          <div class="12u$ 12u$(medium) important(medium) show-roof arrows">
+            <a href="#eight" class="scrolly icon major fa-angle-double-down"></a>
+          </div>          
+        </div>
+      </section>
+
+    <!-- Eight: Drucken -->
+      <section id="eight" class="main style2 special show-roof">
+        <div class="container">
+          <header class="major">
+            <span class="icon major fa-print"></span>
+            <h2><span class="trn">druckenTitel</span></h2>
+          </header>
+          <p></p>
+          <ul class="actions uniform">
+            <li><a href="" class="button" id="printLink" target="_blank"><span class="trn">druckenButton</span></a></li>
+          </ul>
+          <div class="12u$ 12u$(medium) important(medium) show-roof arrows">
+            <a href="#nine" class="scrolly icon major fa-angle-double-down"></a>
+          </div>          
+        </div>
+      </section>
+
+
+    <!-- Nine: EnergieSchweiz -->
+      <section id="nine" class="main style1 special show-roof">
+        <div class="container">
+          <header class="major">
+            <span class="icon major fa-question-circle"></span>
+            <h2><span class="trn">energieSchweizTitel</span></h2>
+          </header>
+          <p></p>
+          <ul class="actions uniform">
+            <li><a href="" class="button" id="stepbystepLink" target="_blank"><span class="trn">energieSchweizButton</span></a></li>
+          </ul>
+          <div class="12u$ 12u$(medium) important(medium) show-roof arrows">
+            <a href="#ten" class="scrolly icon major fa-angle-double-down"></a>
+          </div>          
+        </div>
+      </section>
+
+    <!-- Ten: Dokumentation -->
+      <section id="ten" class="main style2 special">
+        <div class="container">
+          <header class="major">
+            <span class="icon major fa-book"></span>
+            <h2><span class="trn">documentationTitel</span></h2>
+          </header>
+          <p></p>
+          <ul class="actions uniform">
+            <li><a href="" class="button" id="documentationLink" target="_blank"><span class="trn">documentationButton</span></a></li>
+          </ul>
+          <div class="12u$ 12u$(medium) important(medium) show-roof arrows">
+            <a href="#eleven" class="scrolly icon major fa-angle-double-down"></a>
+          </div>          
+        </div>
+      </section>
+
+    <!-- Eleven: Einbetten -->
+      <section id="eleven" class="main style1 special">
+        <div class="container">
+          <header class="major">
+            <span class="icon major fa-share-square-o"></span>
+            <h2><span class="trn">einbettenTitel</span></h2>
+          </header>
+          <p></p>
+          <ul class="actions uniform">
+            <li><a href="" class="button" id="einbettenLink" target="_blank"><span class="trn">einbettenButton</span></a></li>
+          </ul>
+          <div class="12u$ 12u$(medium) important(medium) show-roof arrows">
+            <a href="#twelve" class="scrolly icon major fa-angle-double-down"></a>
+          </div>          
+        </div>
+      </section>
+
+    <!-- Twelve: Hinweis -->
+      <section id="twelve" class="main style2 special">
+        <div class="container">
+          <header class="major">
+            <span class="icon major fa-info-circle"></span>
+            <h2><span class="trn">hint</span></h2>
+          </header>
+          <p>
+            <span class="trn">hintBeAwareAllgemein</span>
+          </p>
+          <p>
+            <strong><span class="trn">printSolarstromTitel</span></strong><br>
+            <span class="trn">hintBeAwareStrom</span>
+          </p>
+          <p>
+            <strong><span class="trn">printSolarwaermeTitel</span></strong><br>
+            <span class="trn">hintBeAwareWaerme</span>
+          </p>
+          <p>
+            <strong><span class="trn">printKombiTitel</span></strong><br>
+            <span class="trn">hintBeAwareKombi</span>
+          </p>          
+          <p>
+            <span class="trn">hintBeAwareButton</span>
+          </p>
+          <ul class="actions uniform">
+            <li><a href="" class="button" id="hintSolarrechner" target="_blank"><span class="trn">hintBeAwareButtonText</span></a></li>
+          </ul>             
+          <div class="12u$ 12u$(medium) important(medium) show-roof arrows">
+            <a href="#one" class="scrolly icon major fa-angle-double-up"></a>
+          </div>          
+        </div>
+      </section>
+
+		<!-- Footer -->
+    <section id="footer">
+      <ul class="icons">
+        <li><a id="socialTwitter" href="" class="icon alt fa-twitter" target="_blank"><span class="label">Twitter</span></a></li>
+        <li><a id="socialFB" href="" class="icon alt fa-facebook" target="_blank"><span class="label">Facebook</span></a></li>
+        <li><a id="socialMail" href="" class="icon alt fa-envelope"><span class="label">Email</span></a></li>
+      </ul>
+      <ul class="copyright">
+        <li><span class="trn">copyrightMain</span></li>
+        <li>v 1.1.2</li>
+        <li><span class="trn">contact</span></li>
+        <li class="trn">impressumAnalyse</li>
+        <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+      </ul>
+    </section>
+
+		<!-- Scripts -->
+    <script src="assets/js/jquery-2.1.4.min.js"></script>
+    <script src="assets/js/jquery.xdomainrequest.1.0.2.min.js"></script>
+    <script src="assets/js/jquery.placeholder.2.0.7.min.js"></script>
+    <script src="assets/js/typeahead.bundle.0.11.1.js"></script> 
+    <script src="assets/js/jquery.translate.0.9.1.js"></script>
+    <script src="assets/js/d3.min.js"></script>
+    <script src="assets/js/d3.tip.v0.6.3.js"></script>
+
+	  <script src="assets/js/jquery.scrolly.min.js"></script>
+		<script src="assets/js/skel.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+		<script src="assets/js/main.js"></script>
+    <script src="assets/js/ol.3.12.1.js"></script>
+    <script src="assets/js/proj4.2.2.1.js"></script>
+    <script src="assets/js/EPSG21781.js"></script>
+    <script src="assets/js/EPSG2056.js"></script>
+    <script src="assets/js/layers.js"></script>
+    <script src="assets/js/map.js"></script>
+    <script src="assets/js/barchart.js"></script>
+    <script src="assets/js/utils.js"></script>
+    <script src="assets/js/search.js"></script>
+    <script src="assets/js/location.js"></script>
+    <script src="assets/js/permalink.js"></script>
+    <script src="assets/js/translations.js"></script>
+    <script src="assets/js/init.js"></script>
+
+    <script>
+      $(document).ready(function() {
+        init(false);
+      });
+    </script>
+    
+	</body>
+</html>

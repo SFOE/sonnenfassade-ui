@@ -1,0 +1,555 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title class="trn">pagetitle</title>
+		<meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, minimal-ui"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <meta name="application-name" content="sonnendach"/>
+    
+    <!--
+    <meta name="msapplication-TileImage" content="images/touch-icon-bund-144x144.png"/>
+    <meta name="msapplication-TileColor" content="#ffffff"/>
+    <meta name="msapplication-square70x70logo" content="images/touch-icon-bund-70x70.png"/>
+    <meta name="msapplication-square150x150logo" content="images/touch-icon-bund-150x150.png"/>
+    <meta name="msapplication-square310x310logo" content="images/touch-icon-bund-310x310.png"/>
+    <link rel="apple-touch-icon" sizes="76x76" href="images/touch-icon-bund-76x76.png"/>
+    <link rel="apple-touch-icon" sizes="120x120" href="images/touch-icon-bund-120x120.png"/>
+    <link rel="apple-touch-icon" sizes="152x152" href="images/touch-icon-bund-152x152.png"/>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+		
+		<link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="assets/css/map.css"/>
+    -->
+
+     <link rel="stylesheet" type="text/css" href="assets/css/extended.min.css"/>
+     <link rel="stylesheet" type="text/css" href="assets/css/print.css"/>
+     <link rel="stylesheet" type="text/css" href="assets/css/barchart.css"/>
+
+	</head>
+
+	<body>
+
+  <div class="chsdi-htmlpopup-container">
+
+    <!-- HEADER EIDG -->
+    <div class="htmlpopup-header hide" id="eig">
+      <img src="images/logo.jpg">
+      <div class="amts">
+        <div class="amt trn">bfe</div>
+        <div class="amt trn">meteoschweiz</div>
+        <div class="amt trn">swisstopo</div>
+      </div>
+    </div>
+
+    <!-- HEADER ECH -->
+    <div class="htmlpopup-header hide" id="ech">
+      <img src="assets/css/images/logoech.png">
+    </div>
+    
+    <div class="htmlpopup-content">
+
+      <!-- TITEL -->
+      <h3 class="trn">mainTitle</h3>
+
+      <!-- ALLG INFOS -->
+      <table class="table-with-border kernkraftwerke-extended" cellpadding="5">
+        <tr>
+          <th class="cell-meta">
+            <span class="trn">address</span>
+          </th>
+          <td>
+            <span id="addressOutput"></span>
+          </td>
+        </tr>
+        <tr>
+          <th class="cell-meta">
+            <span class="trn">eignungTitel</span>
+          </th>
+          <td>
+            <span id="eignung"></span>
+          </td>
+        </tr>
+        <tr>
+          <th class="cell-meta">
+            <span class="trn">PVbuttonText1</span>
+          </th>
+          <td>
+            <span id="finanzertrag"></span> 
+			      <span class="trn">amountYear</span>
+          </td>
+        </tr> 
+         <tr>
+            <td colspan ="2">
+              <span class="hint trn">hint</span><br>
+              <span class="hint trn">hintBeAwareAllgemein</span>
+            </td>
+          </tr>       
+      </table>
+
+      <!-- KARTE -->
+      <div id="map" style="width: 100%; height: 300px;padding:1em 0 1em 0;"></div>
+
+      <!-- SOLARSTROM -->
+      <h3 class="trn">printSolarstromTitel</h3>
+      <table class="table-with-border kernkraftwerke-extended" cellpadding="5">
+       <tr>
+          <td colspan ="2">
+            <span class="hint trn">hint</span><br>
+            <span class="hint trn">hintBeAwareStrom</span>
+          </td>
+        </tr>           
+        <tr>
+          <th class="cell-meta">
+            <span class="trn">eignungTitel</span>&nbsp;<b>*</b>
+          </th>
+          <td>
+            <span id="eignung3"></span>
+          </td>
+        </tr>
+        <tr>
+          <th class="cell-meta" style="vertical-align:top">
+            <span class="trn">powerProduction</span>&nbsp;<b>**</b><br>
+			      <span class="hint trn">moduleEfficiency</span><br>
+		      	<span class="hint trn">performanceRatio</span>
+          </th>
+          <td>
+            <span id="stromertrag"></span>
+			      <span class="trn">solarPowerYear</span><br>
+			      <span class="hint trn">solarstromText</span>
+          </td>
+        </tr>        
+        <tr>
+          <th class="cell-meta">
+            <span class="trn">PVbuttonText1</span>
+          </th>
+          <td>
+            <span id="finanzertrag2"></span> 
+			      <span class="trn">amountYear</span>
+          </td>
+        </tr>     
+        <tr>
+          <th class="cell-meta">
+            <span class="trn">pv100text</span>
+          </th>
+          <td>
+            <span id="pv100"></span><strong>&nbsp;kWh</strong>
+          </td>
+        </tr>
+        <tr>
+          <th class="cell-meta">
+            <span class="trn">pv75text</span>
+          </th>
+          <td>
+            <span id="pv75"></span><strong>&nbsp;kWh</strong>
+          </td>
+        </tr>
+        <tr>
+          <th class="cell-meta">
+            <span class="trn">pv50text</span>
+          </th>
+          <td>
+            <span id="pv50"></span><strong>&nbsp;kWh</strong>
+          </td>
+        </tr>
+
+
+       <tr>
+          <td colspan ="2">
+            <span class="hint trn">hint</span><br>
+      		  <span class="hint trn">hintUsability</span><br>
+      		  <span class="hint trn">hintPowerProduction</span>
+        	</td>
+        </tr> 		
+      </table>
+
+      <!-- SOLARWAERME -->
+      <h3 class="trn">printSolarwaermeTitel</h3>
+      <table class="table-with-border kernkraftwerke-extended" cellpadding="5">
+       <tr>
+          <td colspan ="2">
+            <span class="hint trn">hint</span><br>
+            <span class="hint trn">hintBeAwareWaerme</span>
+          </td>
+        </tr>          
+        <tr>
+          <th class="cell-meta" style="vertical-align:top">
+            <span class="trn">Wärmeertrag</span><br>
+            <span class="hint trn">WaermeertragDefinition</span>
+          </th>
+          <td>
+            <span id="solarHeat"></span>
+          </td>
+        </tr>
+		    <tr>
+          <th class="cell-meta" style="vertical-align:top">
+            <span class="trn">savingSolarheat</span>
+          </th>
+          <td>
+            <span id="solarHeatCost"></span><br>
+            <span class="hint" id="heatText"></span>
+          </td>
+        </tr>
+        <!--
+        <tr>
+          <th class="cell-meta">
+            <span class="trn">heatDemand</span>
+          </th>
+          <td>
+            <span id="heatDemand"></span>
+          </td>
+        </tr>
+        -->
+        <tr>
+          <th class="cell-meta">
+      			<span class="trn">heatingDemand</span><br>
+      			<span class="hint trn">heatingDemandText</span>
+          </th>
+          <td>
+            <span id="heatingDemand"></span>
+          </td>
+        </tr>  
+        <tr>
+          <th class="cell-meta">
+      			<span class="trn">warmWaterDemand</span><br>
+      			<span class="hint trn">warmWaterDemandText</span>
+          </th>
+          <td>
+            <span id="warmWaterDemand"></span>
+          </td>
+        </tr>
+        <tr>
+          <th class="cell-meta">
+      			<span class="trn">reservoir</span><br>
+      			<span class="hint trn">reservoirText</span>
+          </th>
+          <td>
+            <span id="reservoir"></span>
+          </td>
+        </tr> 	
+        <tr>
+          <th class="cell-meta">
+      			<span class="trn">collectorSurface</span><br>
+      			<span class="hint trn">collectorSurfaceText</span>
+          </th>
+          <td>
+            <span id="collectorSurface"></span>&nbsp;
+          </td>
+        </tr>
+        <tr>
+          <td colspan ="2">
+            <span class="hint trn">hint</span><br>
+    		    <span class="hint trn">hintGWR</span><br>
+    		    <span class="hint trn">hintReservoirArea</span><br>
+    		  </td>
+        </tr> 		
+      </table>
+
+      <!-- IHRE DAECHFLAECHE -->
+      <h3 class="trn">yourRoof</h3>
+      <table class="table-with-border kernkraftwerke-extended" cellpadding="5">
+        <tr>
+          <th class="cell-meta">
+            <span class="trn">roofInclination</span>
+          </th>
+          <td>
+            <span id="pitchOutput"></span>&deg;
+          </td>
+        </tr>
+        <tr>
+          <th class="cell-meta">
+            <span class="trn">roofOrientation</span>
+          </th>
+          <td>
+            <span id="headingOutput"></span>&deg;&nbsp;<span id="headingText"></span>
+          </td>
+        </tr>
+        <tr>
+          <th class="cell-meta">
+            <span class="trn">roofArea</span>
+          </th>
+          <td>
+            <span id="areaOutput"></span>&nbsp;<span class="trn">m2</span>
+          </td>
+        </tr>             
+      </table>
+
+      <!-- STRAHLUNG -->
+      <h3 class="trn">yourSolarRadiation</h3>
+      <table class="table-with-border kernkraftwerke-extended" cellpadding="5">
+        <tr>
+          <th class="cell-meta" style="vertical-align:top">
+            <span class="trn">meanRadiation</span><br>
+            <span class="hint trn">meanRadiationText</span>
+          </th>
+          <td>
+            <span id="meanRadiation"></span>
+            <span class="trn">kWhM2</span>
+          </td>
+        </tr>        
+        <tr>
+          <th class="cell-meta" style="vertical-align:top">
+            <span class="trn">totalRadiation</span><br>
+            <span class="hint trn">totalRadiationText</span>	
+          </th>
+          <td>
+            <span id="totalRadiation"></span>
+            <span class="trn">kWh</span>
+          </td>
+        </tr>
+        <tr>
+          <td colspan ="2">
+            <span class="hint trn">hint</span><br>
+		        <span class="hint trn">hintRadiation</span>
+		      </td>
+        </tr>  		
+      </table>
+
+      <!-- MONATE -->
+      <h3 class="trn">graphTitel</h3>
+      <table class="table-with-border kernkraftwerke-extended" cellpadding="5">
+        <tr>
+          <th class="cell-meta" style="vertical-align:top">
+            <span class="trn">month</span>	
+          </th>
+          <th class="cell-meta" style="vertical-align:top">
+            <span class="trn">powerProductionMonth</span>
+          </th>
+          <th class="cell-meta" style="vertical-align:top">
+            <span class="trn">FinanceMonth</span>
+          </th>          
+		      <th class="cell-meta" style="vertical-align:top">
+            <span class="trn">heatingDaysMonth</span> *
+          </th>
+        </tr>
+        <tr>
+          <th class="cell-meta" style="vertical-align:top">
+            <span id="month11"></span>
+          </th>
+          <td>
+            <span id="powerProductionMonth11"></span>
+          </td>
+          <td>
+            <span id="financeMonth11"></span>
+          </td>
+          <td>
+            <span id="heatingDaysMonth11"></span>
+          </td>
+        </tr>
+		    <tr>
+          <th class="cell-meta" style="vertical-align:top">
+            <span id="month10"></span>
+          </th>
+          <td>
+            <span id="powerProductionMonth10"></span>
+          </td>
+          <td>
+            <span id="financeMonth10"></span>
+          </td>
+          <td>
+            <span id="heatingDaysMonth10"></span>
+          </td>
+        </tr>
+		    <tr>
+          <th class="cell-meta" style="vertical-align:top">
+            <span id="month9"></span>
+          </th>
+          <td>
+            <span id="powerProductionMonth9"></span>
+          </td>
+          <td>
+            <span id="financeMonth9"></span>
+          </td>
+          <td>
+            <span id="heatingDaysMonth9"></span>
+          </td>
+        </tr>
+		    <tr>
+          <th class="cell-meta" style="vertical-align:top">
+            <span id="month8"></span>
+          </th>
+          <td>
+            <span id="powerProductionMonth8"></span>
+          </td>
+          <td>
+            <span id="financeMonth8"></span>
+          </td>
+          <td>
+            <span id="heatingDaysMonth8"></span>
+          </td>
+        </tr>
+		    <tr>
+          <th class="cell-meta" style="vertical-align:top">
+            <span id="month7"></span>
+          </th>
+          <td>
+            <span id="powerProductionMonth7"></span>
+          </td>
+          <td>
+            <span id="financeMonth7"></span>
+          </td>
+          <td>
+            <span id="heatingDaysMonth7"></span>
+          </td>
+        </tr>
+        <tr>
+          <th class="cell-meta" style="vertical-align:top">
+            <span id="month6"></span>
+          </th>
+          <td>
+            <span id="powerProductionMonth6"></span>
+          </td>
+          <td>
+            <span id="financeMonth6"></span>
+          </td>
+          <td>
+            <span id="heatingDaysMonth6"></span>
+          </td>
+        </tr>
+		    <tr>
+          <th class="cell-meta" style="vertical-align:top">
+            <span id="month5"></span>
+          </th>
+          <td>
+            <span id="powerProductionMonth5"></span>
+          </td>
+          <td>
+            <span id="financeMonth5"></span>
+          </td>
+          <td>
+            <span id="heatingDaysMonth5"></span>
+          </td>
+        </tr>
+		    <tr>
+          <th class="cell-meta" style="vertical-align:top">
+            <span id="month4"></span>
+          </th>
+          <td>
+            <span id="powerProductionMonth4"></span>
+          </td>
+          <td>
+            <span id="financeMonth4"></span>
+          </td>
+          <td>
+            <span id="heatingDaysMonth4"></span>
+          </td>
+        </tr>
+		    <tr>
+          <th class="cell-meta" style="vertical-align:top">
+            <span id="month3"></span>
+          </th>
+          <td>
+            <span id="powerProductionMonth3"></span>
+          </td>
+          <td>
+            <span id="financeMonth3"></span>
+          </td>
+          <td>
+            <span id="heatingDaysMonth3"></span>
+          </td>
+        </tr>
+		    <tr>
+          <th class="cell-meta" style="vertical-align:top">
+            <span id="month2"></span>
+          </th>
+          <td>
+            <span id="powerProductionMonth2"></span>
+          </td>
+          <td>
+            <span id="financeMonth2"></span>
+          </td>
+          <td>
+            <span id="heatingDaysMonth2"></span>
+          </td>
+        </tr>
+		    <tr>
+          <th class="cell-meta" style="vertical-align:top">
+            <span id="month1"></span>
+          </th>
+          <td>
+            <span id="powerProductionMonth1"></span>
+          </td>
+          <td>
+            <span id="financeMonth1"></span>
+          </td>
+          <td>
+            <span id="heatingDaysMonth1"></span>
+          </td>
+        </tr>
+		    <tr>
+          <th class="cell-meta" style="vertical-align:top">
+            <span id="month0"></span>
+          </th>
+          <td>
+            <span id="powerProductionMonth0"></span>
+          </td>
+          <td>
+            <span id="financeMonth0"></span>
+          </td>
+          <td>
+            <span id="heatingDaysMonth0"></span>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="4">
+      			<span class="hint trn">hint</span><br>
+      			<span class="hint trn">hintHeatingDaysMonth</span><br>
+    		  </td>
+        </tr>		
+      </table>
+
+    <!-- BARCHART -->
+    <div id="chart"></div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <div class="htmlpopup-footer">
+      <a href="http://www.geo.admin.ch/internet/geoportal/de/home/geoadmin/contact.html#copyright" target="_blank">
+        <span class="trn">copyright</span>
+      </a>
+      <div class="float-right">
+        <a href="javascript:window.print();">
+          <span class="trn">druckenButton</span>
+        </a>
+      </div>
+    </div>
+	</div>
+
+  <span id="thisIsPrint"></span>
+
+    <script src="assets/js/jquery-2.1.4.min.js"></script>
+    <script src="assets/js/jquery.xdomainrequest.1.0.2.min.js"></script>
+    <script src="assets/js/jquery.placeholder.2.0.7.min.js"></script>
+    <script src="assets/js/typeahead.bundle.0.11.1.js"></script> 
+    <script src="assets/js/jquery.translate.0.9.1.js"></script>
+    <script src="assets/js/d3.min.js"></script>
+    <script src="assets/js/d3.tip.v0.6.3.js"></script>
+	  <script src="assets/js/jquery.scrolly.min.js"></script>
+		<script src="assets/js/skel.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+    <script src="assets/js/ol.3.12.1.js"></script>
+    <script src="assets/js/proj4.2.2.1.js"></script>
+    <script src="assets/js/EPSG21781.js"></script>
+    <script src="assets/js/EPSG2056.js"></script>
+    <script src="assets/js/layers.js"></script>
+    <script src="assets/js/map.js"></script>
+    <script src="assets/js/barchart.js"></script>
+    <script src="assets/js/utils.js"></script>
+    <script src="assets/js/search.js"></script>
+    <script src="assets/js/location.js"></script>
+    <script src="assets/js/permalink.js"></script>
+    <script src="assets/js/translations.js"></script>
+    <script src="assets/js/init.js"></script>
+    
+    <script>
+      $(document).ready(function() {
+        init(false);
+      });
+    </script>
+
+	</body>
+</html>
