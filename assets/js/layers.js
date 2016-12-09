@@ -33,14 +33,7 @@ var getWmts = function(layer, options) {
       matrixIds: $.map(resolutions, function(r, i) { return i + ''; })
     });
     var extension = options.format || 'png';
-    //var timestamp = options['timestamp'] ? options['timestamp'] : options['timestamps'][0];
-
-    //if(layer == 'ch.bfe.solarenergie-eignung-daecher') {
-    //  var timestamp = '20160613';
-      //latest timestamp, see http://wmts.geo.admin.ch/1.0.0/WMTSCapabilities.xml, Dimension
-    //} else {
-      var timestamp = options['timestamp'] ? options['timestamp'] : options['timestamps'][0];
-    //}
+    var timestamp = options['timestamp'] ? options['timestamp'] : options['timestamps'][0];
 
     return new ol.source.WMTS( /** @type {olx.source.WMTSOptions} */({
       crossOrigin: 'anonymous',
@@ -57,4 +50,31 @@ var getWmts = function(layer, options) {
         'Time': timestamp
       }
     }));
+};
+
+/**
+ * Create a tiled WMS source given a bod layer id
+ * 
+ * @method
+ * @param {string} layer layer id.
+ * @param {Object} options source options.
+ * @return {ol.source.TileWMS}
+ */
+var getWms = function(layer, options) {
+  return new ol.source.TileWMS({
+    crossOrigin: 'anonymous',
+    wrapX: false,
+    gutter: options['gutter'] || 0,
+    attributions: [
+      new ol.Attribution({html: '<a href="' +
+        options['attributionUrl'] +
+        '" target="new">' +
+        options['attribution'] + '</a>'})
+    ],
+    params: {
+      'LAYERS': options['wmsLayers'] || layer,
+      'TIME': options['timestamp']
+    },
+    url: options['wmsUrl'].split('?')[0].replace('http:',location.protocol)
+  });
 };

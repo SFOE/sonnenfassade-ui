@@ -206,21 +206,12 @@ var updateRoofInfo = function(map, marker, roof) {
 
     $('#TitelSolarstrom').html(TitelSolarstromText);
 
-    if (roof.attributes.neigung > 0) {
-      $('#pvpic1').attr("src","images/pv_schraegdach1.png");
-      $('#pvpic2').attr("src","images/pv_schraegdach2.png");
-      $('#pvpic3').attr("src","images/pv_schraegdach3.png");
-      $('#pv100text').html(translator.get('pv100text'));
-      $('#pv75text').html(translator.get('pv75text'));
-      $('#pv50text').html(translator.get('pv50text'));
-    } else {
-      $('#pvpic1').attr("src","images/pv_flachdach1.png");
-      $('#pvpic2').attr("src","images/pv_flachdach2.png");
-      $('#pvpic3').attr("src","images/pv_flachdach3.png");
-      $('#pv100text').html(translator.get('pv100textflach'));
-      $('#pv75text').html(translator.get('pv75textflach'));
-      $('#pv50text').html(translator.get('pv50textflach'));      
-    }
+    $('#pvpic1').attr("src","images/fassade_100.png");
+    $('#pvpic2').attr("src","images/fassade_50.png");
+    $('#pvpic3').attr("src","images/fassade_25.png");
+    $('#pv100text').html(translator.get('pv100text'));
+    $('#pv75text').html(translator.get('pv75text'));
+    $('#pv50text').html(translator.get('pv50text'));
 
   }
 
