@@ -281,6 +281,10 @@ var updateRoofInfo = function(map, marker, roof) {
       '&lang=' + lang;
   }
 
+  if ($.contains(document.body, document.getElementById("linkToSonnendach"))) {
+    document.getElementById('linkToSonnendach').href = 'http://www.bfe-gis.admin.ch/sonnendach/?lang=' + lang + '&building=' + roof.attributes.building_id;
+  }
+
   if ($.contains(document.body, document.getElementById("documentationLink"))) {
 
     document.getElementById('documentationLink').href = translator.get('documentationLink');
@@ -392,7 +396,7 @@ var updateRoofInfo = function(map, marker, roof) {
   var vectorLayer = clearHighlight(map, marker);
   vectorLayer.getSource().addFeature(new ol.Feature(polygon));
   marker.setPosition(polygon.getInteriorPoint().getCoordinates());
-  flyTo(map, marker.getPosition(), 0.5);
+  flyTo(map, marker.getPosition(), 0.25);
 
   if ($.contains(document.body, document.getElementById("thisIsPrint"))) {
     updateBarChart(roof, roof.attributes.klasse, roof.attributes.flaeche, 1);  
@@ -636,6 +640,55 @@ var init = function(nointeraction) {
 
       });
     }
+
+    // Display the feature from building-id
+    if (permalink.building) {
+
+      var url = API3_URL + '/rest/services/api/MapServer/find?' +
+          'layer=ch.bfe.solarenergie-eignung-daecher&' +
+          'searchField=building_id&' +
+          'searchText=' + permalink.building +
+          '&contains=false';
+      return $.getJSON(url).then(function(data) {
+        var bestRoof = data.results[0];
+        var bestRoofFeatureId = bestRoof.featureId;
+        for (var i = 0; i < data.results.length; i++) {
+          roofCandidate = data.results[i];
+          if (roofCandidate.attributes.mstrahlung >
+              bestRoof.attributes.mstrahlung) {
+            bestRoof = roofCandidate;
+            bestRoofFeatureId = roofCandidate.featureId;
+          }
+        }
+
+        searchFeatureFromId(bestRoofFeatureId).then(function(data) {
+
+          var coord = ol.extent.getCenter(data.feature.bbox);
+          // Assure to be around resulting point with correct zoom level
+          map.getView().setCenter(coord);
+          map.getView().setResolution(0.25);
+
+          geocode(map, coord).then(function(data) {
+            // We assume the first of the list is the closest
+            onAddressFound(map, marker, data.results[0], false, 50.0);
+          });
+
+          goTo('one');
+
+          // Add the featureId to the lang link href
+          $('#lang a').attr('href', function(index, attr) {
+            this.href = attr + '&featureId=' + permalink.featureId;
+          });
+
+          onRoofFound(map, marker, data.feature); //?
+
+        });
+
+      });
+      
+    }
+
+
   });
 
   if ($.contains(document.body, document.getElementById("socialTwitter"))) {
@@ -652,6 +705,10 @@ var init = function(nointeraction) {
     document.getElementById("socialMail").href = 
     'mailto:?subject=' + translator.get('pagetitle') + ' ' + translator.get('domain');
   }
+
+  if ($.contains(document.body, document.getElementById("linkToSonnendach"))) {
+    document.getElementById('linkToSonnendach').href = translator.get('domain');
+  }  
 
   if ($.contains(document.body, document.getElementById("documentationLink"))) {
 
