@@ -251,3 +251,23 @@ var monthToText = function(month) {
   return monthText;
 
 };
+
+var EignungToColor = function(klasse) {
+
+  var color = '';
+
+  if (klasse == 1) {
+    color = "rgb(0, 197, 255)";
+  } else if (klasse == 2) {
+    color = "rgb(255, 255, 0)";
+  } else if (klasse == 3) {
+    color = "rgb(255, 170, 0)";
+  } else if (klasse == 4) {
+    color = "rgb(255, 85, 0)";
+  } else {
+    color = "rgb(168, 0, 0)";
+  }
+
+  return color;
+
+};

@@ -64,7 +64,7 @@ var updateRoofInfo = function(map, marker, roof) {
   //fill content with attributes
   $('#mstrahlungOutput').html(formatNumber(roof.attributes.mstrahlung));
   $('#gstrahlungOutput').html(formatNumber(roof.attributes.gstrahlung));
-  $('#pitchOutput').html(roof.attributes.neigung);
+  //$('#pitchOutput').html(roof.attributes.neigung);
   $('#headingOutput').html(roof.attributes.ausrichtung + 180);
   $('#headingText').html(getOrientationText(roof.attributes.ausrichtung, window.translator));
   $('#areaOutput').html(formatNumber(Math.round(roof.attributes.flaeche)));
@@ -282,7 +282,15 @@ var updateRoofInfo = function(map, marker, roof) {
   }
 
   if ($.contains(document.body, document.getElementById("linkToSonnendach"))) {
-    document.getElementById('linkToSonnendach').href = 'http://www.bfe-gis.admin.ch/sonnendach/?lang=' + lang + '&building=' + roof.attributes.building_id;
+    document.getElementById('linkToSonnendach').href = 'http://www.energiestadtfinder.ch/sonnendach/?lang=' + lang + '&building=' + roof.attributes.building_id;
+  }
+
+  if ($.contains(document.body, document.getElementById("linkHeaderPic"))) {
+    document.getElementById('linkHeaderPic').href = 'http://www.energiestadtfinder.ch/sonnendach/?lang=' + lang + '&building=' + roof.attributes.building_id;
+  }
+
+  if ($.contains(document.body, document.getElementById("linkSwitch"))) {
+    document.getElementById('linkSwitch').href = 'http://www.energiestadtfinder.ch/sonnendach/?lang=' + lang + '&building=' + roof.attributes.building_id;
   }
 
   if ($.contains(document.body, document.getElementById("documentationLink"))) {
@@ -391,11 +399,26 @@ var updateRoofInfo = function(map, marker, roof) {
    
 //************
 
-  // Clear the highlighted roof the add the new one
-  var polygon = new ol.geom.Polygon(roof.geometry.rings); 
+  // Clear the highlighted roof then add the new one
+  var polygon = new ol.Feature({
+    geometry: new ol.geom.MultiLineString(roof.geometry.paths)
+  });
+
+  var polygon2 = new ol.geom.MultiLineString(roof.geometry.paths);
+  
+  polygon.setStyle(
+    new ol.style.Style({
+      stroke: new ol.style.Stroke({
+         color: EignungToColor(roof.attributes.klasse),
+         width: 10
+      })
+    })
+  );
+
   var vectorLayer = clearHighlight(map, marker);
-  vectorLayer.getSource().addFeature(new ol.Feature(polygon));
-  marker.setPosition(polygon.getInteriorPoint().getCoordinates());
+  var extent = polygon2.getExtent();
+  vectorLayer.getSource().addFeature(polygon);
+  marker.setPosition([(extent[2]+extent[0])/2, (extent[3]+extent[1])/2]);
   flyTo(map, marker.getPosition(), 0.25);
 
   if ($.contains(document.body, document.getElementById("thisIsPrint"))) {
@@ -428,7 +451,7 @@ var updateSolarrechnerLinks = function () {
     }
 
     if (lastRoof) {
-      parameters += '&NEIGUNG=' + lastRoof.attributes.neigung;
+      parameters += '&NEIGUNG=90';
       parameters += '&AUSRICHTUNG=' + lastRoof.attributes.ausrichtung;
       parameters += '&BEDARF_WARMWASSER=' + lastRoof.attributes.bedarf_warmwasser;
       lastFlaeche = Math.round(lastRoof.attributes.flaeche);
@@ -529,7 +552,8 @@ var clearHighlight = function(map, marker) {
  */
 var init = function(nointeraction) {
   $.support.cors = true;
-  window.API3_URL = 'https://api3.geo.admin.ch';
+  //window.API3_URL = 'https://api3.geo.admin.ch';
+  window.API3_URL = 'https://mf-chsdi3.dev.bgdi.ch/dev_ltclm_solar_fassaden';
   
   var langs = ['de', 'fr', 'it', 'en'];
   var headers = ['0','1'];
@@ -575,6 +599,16 @@ var init = function(nointeraction) {
     document.getElementById("location").innerHTML = document.getElementById("location").innerHTML + ' <span class="icon fa-location-arrow"></span>';
   }
 
+  // SWITCH
+  $(document).scroll(function() {
+    var y = $(this).scrollTop();
+    if (y > 700) {
+      $('#switchDachFassade').fadeIn();
+    } else {
+      $('#switchDachFassade').fadeOut();
+    }
+  });
+
   // Create map
   createMap('map', lang, nointeraction).then(function(map) {;
     var marker = new ol.Overlay({
@@ -587,7 +621,7 @@ var init = function(nointeraction) {
     map.on('singleclick', function(evt){
       var coord = evt.coordinate;
       //Do roof search explicitely
-      searchFeaturesFromCoord(map, coord, 0.0).then(function(data) {
+      searchFeaturesFromCoord(map, coord, 2.0).then(function(data) {
         onRoofFound(map, marker, data.results[0], false); //???????
         // We call the geocode function here to get the
         // address information for the clicked point using
@@ -645,7 +679,7 @@ var init = function(nointeraction) {
     if (permalink.building) {
 
       var url = API3_URL + '/rest/services/api/MapServer/find?' +
-          'layer=ch.bfe.solarenergie-eignung-daecher&' +
+          'layer=ch.bfe.solarenergie-eignung-fassaden&' +
           'searchField=building_id&' +
           'searchText=' + permalink.building +
           '&contains=false';
@@ -708,7 +742,17 @@ var init = function(nointeraction) {
 
   if ($.contains(document.body, document.getElementById("linkToSonnendach"))) {
     document.getElementById('linkToSonnendach').href = translator.get('domain');
-  }  
+  }
+
+  if ($.contains(document.body, document.getElementById("linkHeaderPic"))) {
+    document.getElementById('linkHeaderPic').href = 'http://www.energiestadtfinder.ch/sonnendach/';
+    //document.getElementById('linkHeaderPic').href = translator.get('domain');
+  }
+
+  if ($.contains(document.body, document.getElementById("linkSwitch"))) {
+    document.getElementById('linkSwitch').href = 'http://www.energiestadtfinder.ch/sonnendach/';
+    //document.getElementById('linkSwitch').href = translator.get('domain');
+  }
 
   if ($.contains(document.body, document.getElementById("documentationLink"))) {
 
@@ -726,9 +770,21 @@ var init = function(nointeraction) {
       'einbetten.html?lang=' + lang;
   }
 
+  var linkESRechner = '';
+
+  if (lang == 'de') {
+    linkESRechner = 'https://www.energieschweiz.ch/page/de-ch/solarrechner/';
+  } else if (lang == 'fr') {
+    linkESRechner = 'https://www.suisseenergie.ch/page/fr-ch/calculateur-solaire/';
+  } else if (lang == 'it') {
+    linkESRechner = 'https://www.svizzeraenergia.ch/page/it-ch/calcolatore-solare/';
+  } else if (lang == 'en') {
+    linkESRechner = 'https://www.energieschweiz.ch/page/de-ch/solarrechner/';
+  }  
+
   if ($.contains(document.body, document.getElementById("hintSolarrechner"))) {
     document.getElementById("hintSolarrechner").href = 
-      'http://www.energieschweiz.ch/de-ch/erneuerbare-energien/meine-solaranlage/solarrechner.aspx?SYSTEM=2&TECHNOLOGIE=2';
+      linkESRechner + '?SYSTEM=2&TECHNOLOGIE=2';
   }
 
   // Remove the loading css class 

@@ -91,7 +91,7 @@ var updateBarChart = function() {
       .attr('class', 'd3-tip')
       .offset([-10, 0])
       .html(function(d) {
-        return "<span style='color:red'>" + formatNumber(Math.round(d[1])); + "</span>";
+        return "<span>" + formatNumber(Math.round(d[1])); + "</span>";
       })
 
     var svg = d3.select("#chart").append("svg")
@@ -121,17 +121,7 @@ var updateBarChart = function() {
         .on('mouseover', tip.show)
         .on('mouseout', tip.hide)
         .style("fill", function(d) { 
-          if (eignung == 1) {
-            return "rgb(0, 197, 255)";
-          } else if (eignung == 2) {
-            return "rgb(255, 255, 0)";
-          } else if (eignung == 3) {
-            return "rgb(255, 170, 0)";
-          } else if (eignung == 4) {
-            return "rgb(255, 85, 0)";
-          } else {
-            return "rgb(168, 0, 0)";
-          }
+          EignungToColor(eignung);
           });
 
     svg.append("g")

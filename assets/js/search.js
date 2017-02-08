@@ -41,25 +41,25 @@ var searchFeaturesFromCoord = function(map, coord, tolerance) {
   if (pixelTolerance <= 0) {
     pixelTolerance = 1;
   }
-  var url = API3_URL + '/rest/services/api/MapServer/identify?' + //url
-      'geometryType=esriGeometryPoint' +
-      '&returnGeometry=true' +
-      '&layers=all:ch.bfe.solarenergie-eignung-daecher' +
-      '&geometry=' + coord +
-      '&mapExtent=' + mapExtent.toString() +
+  var url = API3_URL + '/rest/services/all/MapServer/identify?' + //url
+      'geometry=' + coord +
+      '&geometryType=esriGeometryPoint' +
       '&imageDisplay=' + map.getSize().toString() + ',96' +
-      '&tolerance=' + pixelTolerance +
-      '&order=distance' +
-      '&lang=de';
+      '&lang=de' +
+      '&layers=all:ch.bfe.solarenergie-eignung-fassaden' +
+      '&mapExtent=' + mapExtent.toString() +
+      '&returnGeometry=true' +
+      '&tolerance=' + pixelTolerance
+      '&order=distance';
   $(document.body).addClass('ajax-roof');
   return $.getJSON(url).then(function(data) {
     $(document.body).removeClass('ajax-roof');
 
     if (!data.results[0]) {
-      var perimeterURL = API3_URL + '/rest/services/api/MapServer/identify?' + //url
+      var perimeterURL = API3_URL + '/rest/services/all/MapServer/identify?' + //url
         'geometryType=esriGeometryPoint' +
         '&returnGeometry=true' +
-        '&layers=all:ch.bfe.solarenergie-eignung-daecher' +
+        '&layers=all:ch.bfe.solarenergie-eignung-fassaden' +
         '&geometry=' + coord +
         '&mapExtent=411600,55800,891600,330550' +
         '&imageDisplay=1920,1099,96' +
@@ -94,7 +94,7 @@ var searchFeaturesFromCoord = function(map, coord, tolerance) {
  */
 var searchFeatureFromId = function(featureId) {
   var url = API3_URL + '/rest/services/all/MapServer/' +
-      'ch.bfe.solarenergie-eignung-daecher/' + 
+      'ch.bfe.solarenergie-eignung-fassaden/' + 
       featureId + '?geometryFormat=esriGeojson';
   $(document.body).addClass('ajax-roof');
   return $.getJSON(url).then(function(data) {
@@ -109,7 +109,7 @@ var searchFeatureFromId = function(featureId) {
  */
 var searchBestRoofFromBuildingId = function(buildingId) {
   var url = API3_URL + '/rest/services/api/MapServer/find?' +
-      'layer=ch.bfe.solarenergie-eignung-daecher&' +
+      'layer=ch.bfe.solarenergie-eignung-fassaden&' +
       'searchField=building_id&' +
       'searchText=' + buildingId +
       '&contains=false';
@@ -155,7 +155,8 @@ var initSearch = function(map, marker, onAddressFound) {
 		  return Bloodhound.tokenizers.whitespace;
 	   },
 	   remote: {   
-       url: API3_URL + '/rest/services/api/SearchServer?lang=de&searchText=%QUERY&type=locations',
+       //url: API3_URL + '/rest/services/api/SearchServer?lang=de&searchText=%QUERY&type=locations',
+       url: 'http://api3.geo.admin.ch/rest/services/api/SearchServer?lang=de&searchText=%QUERY&type=locations',
        wildcard: '%QUERY',
 		   filter: function(locations) {
 			   var results = [];

@@ -4,10 +4,13 @@
  * @method
  * @return {Promise}
  */
+
 var getLayersConfig = function(lang) {
-  var url = API3_URL + '/rest/services/api/MapServer/layersConfig?lang=' + lang;
+  //var url = API3_URL + '/rest/services/api/MapServer/layersConfig?lang=' + lang;
+  var url = 'http://www.energiestadtfinder.ch/sonnenfassade/mylayerconfig.json';
   return $.getJSON(url);
 };
+
 
 /**
  * @const {Array.<number>}

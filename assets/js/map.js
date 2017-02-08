@@ -7,6 +7,7 @@ var createMap = function(eltId, lang, nointeraction) {
 	
   // Create the layers
   return getLayersConfig(lang).then(function(layers) {
+
     var layer1Id = 'ch.swisstopo.swissimage';
     var layer1Config = layers[layer1Id];
     var layer1 = new ol.layer.Tile({
@@ -16,7 +17,7 @@ var createMap = function(eltId, lang, nointeraction) {
       source: getWmts(layer1Id, layer1Config),
       useInterimTilesOnError: false
     })
-    var layer2Id = 'ch.bfe.solarenergie-eignung-daecher_wmts';
+    var layer2Id = 'ch.bfe.solarenergie-eignung-fassaden_wmts';
     var layer2Config = layers[layer2Id];
     var layer2 = new ol.layer.Tile({
       minResolution: layer2Config.minResolution,
@@ -25,7 +26,7 @@ var createMap = function(eltId, lang, nointeraction) {
       source: getWmts(layer2Id, layer2Config),
       useInterimTilesOnError: false
     })
-    var layer3Id = 'ch.bfe.solarenergie-eignung-daecher_wms';
+    var layer3Id = 'ch.bfe.solarenergie-eignung-fassaden_wms';
     var layer3Config = layers[layer3Id];
     var layer3 = new ol.layer.Tile({
       minResolution: layer3Config.minResolution,
@@ -35,7 +36,7 @@ var createMap = function(eltId, lang, nointeraction) {
       useInterimTilesOnError: false
     })
 
-    // Display th highlight of the roof
+    // Display the highlight of the roof
     var vector = new ol.layer.Vector({
       source: new ol.source.Vector(),
       style: new ol.style.Style({

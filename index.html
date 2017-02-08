@@ -56,6 +56,21 @@
     <link rel="stylesheet" href="assets/css/barchart.css"/>
 	</head>
 	<body class="is-loading">
+
+  <!-- SWITCH -->
+  <div id="switchDachFassade" style="display: none;">
+    <a href="" id="linkSwitch" target="_blank" style="border-bottom: none;">
+      <img id="pvpicheader" src="images/switch_Fassade.png" style="position: fixed; top: 5px; right: 5px; width:175px; z-index: 999;">
+    </a>
+    <font style="color:grey; font-size: 13px; position: fixed; top: 55px; right: 136px; z-index: 999;">
+      <span class="trn">dach</span>
+    </font>
+    <strong>
+      <font style="color:white; font-size: 13px; position: fixed; top: 55px; right: 15px; z-index: 999;">
+        <span class="trn">fassade</span>
+      </font>
+    </strong>
+  </div>
 	  
     <!-- Hidden links to navigate smoothly in the page using scrolly plugin -->
     <div style="display: none;">
@@ -133,7 +148,10 @@
     <section id="header">
       <div class="inner">
         <!-- <span class="icon major fa-sun-o"></span> -->
-        <img id="pvpicheader" src="images/fassade_50.png" style="width:125px">
+        <a href="http://www.energiestadtfinder.ch/sonnendach" id="linkHeaderPic" target="_blank" style="border-bottom: none;">
+          <img id="pvpicheader" src="images/Headerbild_Fassade.png">
+        </a>
+        <h3 class="trn">&nbsp;&nbsp;&nbsp;<font style="color:grey">Dach</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>Fassade</strong></h3>
         <h1 class="trn">mainTitle</h1>
         <ul class="actions">
           <li>
@@ -251,7 +269,7 @@
               </ul>              
             </div>
             <div class="4u 12u$(medium)">
-              <h1 style="margin: 0 0 0.2em 0 !important;"><span id="pv75"></span>&nbsp;kWh</span></h1>
+              <h1 style="margin: 0 0 0.2em 0 !important;"><span id="pv75"></span>&nbsp;kWh</h1>
               <img id="pvpic2" src="" style="width:200px">
               <h3><span class="trn" id="pv75text">pv75text</span></h3>
               <ul class="actions uniform show-roof">
