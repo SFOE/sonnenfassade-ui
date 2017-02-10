@@ -216,8 +216,8 @@ var updateRoofInfo = function(map, marker, roof) {
   }
 
   $('#pv100').html(formatNumber(Math.round((roof.attributes.gstrahlung*0.17*0.8)/100)*100*1));
-  $('#pv75').html(formatNumber(Math.round((roof.attributes.gstrahlung*0.17*0.8)/100)*100*0.75));
-  $('#pv50').html(formatNumber(Math.round((roof.attributes.gstrahlung*0.17*0.8)/100)*100*0.5));
+  $('#pv75').html(formatNumber(Math.round((roof.attributes.gstrahlung*0.17*0.8)/100)*100*0.5));
+  $('#pv50').html(formatNumber(Math.round((roof.attributes.gstrahlung*0.17*0.8)/100)*100*0.25));
 
   // check if no waermeertrag and if no dg_waermebedarf
   var titleHeat = '';

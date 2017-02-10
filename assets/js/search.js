@@ -56,6 +56,7 @@ var searchFeaturesFromCoord = function(map, coord, tolerance) {
     $(document.body).removeClass('ajax-roof');
 
     if (!data.results[0]) {
+      //Abfrage ob Koordinate in Abdeckungspolygon
       var perimeterURL = API3_URL + '/rest/services/all/MapServer/identify?' + //url
         'geometryType=esriGeometryPoint' +
         '&returnGeometry=true' +
@@ -198,7 +199,7 @@ var initSearch = function(map, marker, onAddressFound) {
   searchInputs.attr('placeholder', translator.get('placeholder')); 
 	searchInputs.placeholder();
 	searchInputs.on('typeahead:selected', function(evt, location, suggName) {
-		onAddressFound(map, marker, location, true, 0.0);
+		onAddressFound(map, marker, location, true, 10.0);
     //scroll to section one
     if (this.id == 'searchTypeahead1') {
       goTo('one');
