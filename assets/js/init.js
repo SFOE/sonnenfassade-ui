@@ -202,7 +202,7 @@ var updateRoofInfo = function(map, marker, roof) {
       TitelSolarstromText += '...';
     }
 
-    TitelSolarstromText += ' <a href="#twelve" class="scrolly icon major fa-info-circle" style="font-size:0.2em;cursor: pointer;"></a>';
+    TitelSolarstromText += ' <a href="#thirteen" class="scrolly icon major fa-info-circle" style="font-size:0.2em;cursor: pointer;"></a>';
 
     $('#TitelSolarstrom').html(TitelSolarstromText);
 
@@ -236,7 +236,7 @@ var updateRoofInfo = function(map, marker, roof) {
     titleHeat = translator.get('solarthermieTitelnoHeat');
   }
 
-  $('#heatTitle').html(titleHeat + ' <a href="#twelve" class="scrolly icon major fa-info-circle" style="font-size:0.2em;cursor: pointer;"></a>');
+  $('#heatTitle').html(titleHeat + ' <a href="#thirteen" class="scrolly icon major fa-info-circle" style="font-size:0.2em;cursor: pointer;"></a>');
 
   var textHeat = '';
   if (roof.attributes.duschgaenge > 0) {
@@ -447,10 +447,11 @@ var updateSolarrechnerLinks = function () {
 
     var parameters = '';
     if (lastPlz) {
-      parameters += '&POSTLEITZAHL=' + lastPlz;
+      parameters += '&FASSADE=1&POSTLEITZAHL=' + lastPlz;
     }
 
     if (lastRoof) {
+      parameters += '&FASSADE=1';
       parameters += '&NEIGUNG=90';
       parameters += '&AUSRICHTUNG=' + lastRoof.attributes.ausrichtung;
       parameters += '&BEDARF_WARMWASSER=' + lastRoof.attributes.bedarf_warmwasser;
@@ -480,12 +481,12 @@ var updateSolarrechnerLinks = function () {
 
     if ($.contains(document.body, document.getElementById("buttonSolRPV75"))) {
       document.getElementById("buttonSolRPV75").href = 
-        linkESRechner + '?SYSTEM=1&TECHNOLOGIE=1' + parameters + "&FLAECHE=" + Math.round(lastFlaeche*0.75);
+        linkESRechner + '?SYSTEM=1&TECHNOLOGIE=1' + parameters + "&FLAECHE=" + Math.round(lastFlaeche*0.5);
     }
 
     if ($.contains(document.body, document.getElementById("buttonSolRPV50"))) {
       document.getElementById("buttonSolRPV50").href = 
-        linkESRechner + '?SYSTEM=1&TECHNOLOGIE=1' + parameters + "&FLAECHE=" + Math.round(lastFlaeche*0.5);
+        linkESRechner + '?SYSTEM=1&TECHNOLOGIE=1' + parameters + "&FLAECHE=" + Math.round(lastFlaeche*0.25);
     }    
 
     if ($.contains(document.body, document.getElementById("buttonSolRThermie"))) {
