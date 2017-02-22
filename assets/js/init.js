@@ -282,15 +282,15 @@ var updateRoofInfo = function(map, marker, roof) {
   }
 
   if ($.contains(document.body, document.getElementById("linkToSonnendach"))) {
-    document.getElementById('linkToSonnendach').href = 'http://www.energiestadtfinder.ch/sonnendach/?lang=' + lang + '&building=' + roof.attributes.building_id;
+    document.getElementById('linkToSonnendach').href = 'http://www.bfe-gis.admin.ch/sonnendach/?lang=' + lang + '&building=' + roof.attributes.building_id;
   }
 
   if ($.contains(document.body, document.getElementById("linkHeaderPic"))) {
-    document.getElementById('linkHeaderPic').href = 'http://www.energiestadtfinder.ch/sonnendach/?lang=' + lang + '&building=' + roof.attributes.building_id;
+    document.getElementById('linkHeaderPic').href = 'http://www.bfe-gis.admin.ch/sonnendach/?lang=' + lang + '&building=' + roof.attributes.building_id;
   }
 
   if ($.contains(document.body, document.getElementById("linkSwitch"))) {
-    document.getElementById('linkSwitch').href = 'http://www.energiestadtfinder.ch/sonnendach/?lang=' + lang + '&building=' + roof.attributes.building_id;
+    document.getElementById('linkSwitch').href = 'http://www.bfe-gis.admin.ch/sonnendach/?lang=' + lang + '&building=' + roof.attributes.building_id;
   }
 
   if ($.contains(document.body, document.getElementById("documentationLink"))) {
@@ -746,12 +746,12 @@ var init = function(nointeraction) {
   }
 
   if ($.contains(document.body, document.getElementById("linkHeaderPic"))) {
-    document.getElementById('linkHeaderPic').href = 'http://www.energiestadtfinder.ch/sonnendach/';
+    document.getElementById('linkHeaderPic').href = 'http://www.bfe-gis.admin.ch/sonnendach/';
     //document.getElementById('linkHeaderPic').href = translator.get('domain');
   }
 
   if ($.contains(document.body, document.getElementById("linkSwitch"))) {
-    document.getElementById('linkSwitch').href = 'http://www.energiestadtfinder.ch/sonnendach/';
+    document.getElementById('linkSwitch').href = 'http://www.bfe-gis.admin.ch/sonnendach/';
     //document.getElementById('linkSwitch').href = translator.get('domain');
   }
 
