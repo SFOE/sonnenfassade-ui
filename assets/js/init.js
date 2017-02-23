@@ -553,8 +553,7 @@ var clearHighlight = function(map, marker) {
  */
 var init = function(nointeraction) {
   $.support.cors = true;
-  //window.API3_URL = 'https://api3.geo.admin.ch';
-  window.API3_URL = 'https://mf-chsdi3.dev.bgdi.ch/dev_ltclm_solar_fassaden';
+  window.API3_URL = 'https://api3.geo.admin.ch';
   
   var langs = ['de', 'fr', 'it', 'en'];
   var headers = ['0','1'];
