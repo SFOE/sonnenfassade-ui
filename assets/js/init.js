@@ -526,6 +526,8 @@ var onRoofFound = function(map, marker, roof, findBestRoof) {
       $(document.body).removeClass('roof').removeClass('no-roof-outside-perimeter').addClass('no-roof');
     } else {
       $(document.body).removeClass('roof no-roof').removeClass('no-roof').addClass('no-roof-outside-perimeter');
+      map.getView().setCenter([650000, 190000]);
+      map.getView().setResolution(750);
     }
   }
 
