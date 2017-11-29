@@ -20,7 +20,7 @@ var onAddressFound = function(map, marker, address, autoSearchRoof, roofSearchTo
     var start = label.search("<br>") + 4;
     var end = start + 4;
 
-    updateSolarrechnerLinks(false, label.substring(start, end));
+    updateSolarrechnerLinks(false, label.substring(start, end), Math.round(coord[1]), Math.round(coord[0]), label.substring(0, start - 4));
 
     $('#addressOutput').html(label);
     $(document.body).addClass('localized');
@@ -282,15 +282,15 @@ var updateRoofInfo = function(map, marker, roof) {
   }
 
   if ($.contains(document.body, document.getElementById("linkToSonnendach"))) {
-    document.getElementById('linkToSonnendach').href = 'http://www.bfe-gis.admin.ch/sonnendach/?lang=' + lang + '&building=' + roof.attributes.building_id;
+    document.getElementById('linkToSonnendach').href = 'http://www.uvek-gis.admin.ch/BFE/sonnendach/?lang=' + lang + '&building=' + roof.attributes.building_id;
   }
 
   if ($.contains(document.body, document.getElementById("linkHeaderPic"))) {
-    document.getElementById('linkHeaderPic').href = 'http://www.bfe-gis.admin.ch/sonnendach/?lang=' + lang + '&building=' + roof.attributes.building_id;
+    document.getElementById('linkHeaderPic').href = 'http://www.uvek-gis.admin.ch/BFE/sonnendach/?lang=' + lang + '&building=' + roof.attributes.building_id;
   }
 
   if ($.contains(document.body, document.getElementById("linkSwitch"))) {
-    document.getElementById('linkSwitch').href = 'http://www.bfe-gis.admin.ch/sonnendach/?lang=' + lang + '&building=' + roof.attributes.building_id;
+    document.getElementById('linkSwitch').href = 'http://www.uvek-gis.admin.ch/BFE/sonnendach/?lang=' + lang + '&building=' + roof.attributes.building_id;
   }
 
   if ($.contains(document.body, document.getElementById("documentationLink"))) {
@@ -436,18 +436,24 @@ var updateRoofInfo = function(map, marker, roof) {
  * Adds Parameters to Link to Solarrechner
  */
 var updateSolarrechnerLinks = function () {
-  var lastRoof, lastPlz, lastFlaeche;
-  return function(roof, plz) {
+  var lastRoof, lastPlz, lastFlaeche, lastcoordx, lastcoordy, lastaddress;
+  return function(roof, plz, coordx, coordy, address) {
     if (roof) {
       lastRoof = roof;
     }
     if (plz) {
       lastPlz = plz;
+      lastcoordx = coordx;
+      lastcoordy = coordy;
+      lastaddress = address;
     }
 
     var parameters = '';
     if (lastPlz) {
-      parameters += '&FASSADE=1&POSTLEITZAHL=' + lastPlz;
+      parameters += '&POSTLEITZAHL=' + lastPlz;
+      parameters += '&X=' + lastcoordx;
+      parameters += '&Y=' + lastcoordy;
+      parameters += '&ADRESSE=' + lastaddress;
     }
 
     if (lastRoof) {
@@ -497,6 +503,11 @@ var updateSolarrechnerLinks = function () {
     if ($.contains(document.body, document.getElementById("hintSolarrechner"))) {
       document.getElementById("hintSolarrechner").href = 
         linkESRechner + '?SYSTEM=2&TECHNOLOGIE=2' + parameters + "&FLAECHE=" + Math.round(lastFlaeche);
+    }
+
+    if ($.contains(document.body, document.getElementById("vollbildLink"))) {
+      document.getElementById("vollbildLink").href = 
+        "https://map.geo.admin.ch/?lang=" + lang + "&topic=energie&bgLayer=ch.swisstopo.swissimage&catalogNodes=2420,2427,2480,2429,2431,2434,2436,2767,2441,3206,2419&layers=ch.bfe.solarenergie-eignung-fassaden&zoom=12&X=" + lastcoordx + "&Y=" + lastcoordy;
     }
 
   };
@@ -747,12 +758,12 @@ var init = function(nointeraction) {
   }
 
   if ($.contains(document.body, document.getElementById("linkHeaderPic"))) {
-    document.getElementById('linkHeaderPic').href = 'http://www.bfe-gis.admin.ch/sonnendach/';
+    document.getElementById('linkHeaderPic').href = 'http://www.uvek-gis.admin.ch/BFE/sonnendach/';
     //document.getElementById('linkHeaderPic').href = translator.get('domain');
   }
 
   if ($.contains(document.body, document.getElementById("linkSwitch"))) {
-    document.getElementById('linkSwitch').href = 'http://www.bfe-gis.admin.ch/sonnendach/';
+    document.getElementById('linkSwitch').href = 'http://www.uvek-gis.admin.ch/BFE/sonnendach/';
     //document.getElementById('linkSwitch').href = translator.get('domain');
   }
 
