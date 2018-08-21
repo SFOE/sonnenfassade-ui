@@ -52,6 +52,7 @@ var searchFeaturesFromCoord = function(map, coord, tolerance) {
       '&tolerance=' + pixelTolerance
       '&order=distance';
   $(document.body).addClass('ajax-roof');
+
   return $.getJSON(url).then(function(data) {
     $(document.body).removeClass('ajax-roof');
 
@@ -83,6 +84,7 @@ var searchFeaturesFromCoord = function(map, coord, tolerance) {
         perimeter: true
       }]};
     } else {
+      UpdateURLinBrowser(data.results[0].featureId);
       return data;
     }
   });
@@ -156,8 +158,7 @@ var initSearch = function(map, marker, onAddressFound) {
 		  return Bloodhound.tokenizers.whitespace;
 	   },
 	   remote: {   
-       //url: API3_URL + '/rest/services/api/SearchServer?lang=de&searchText=%QUERY&type=locations',
-       url: 'http://api3.geo.admin.ch/rest/services/api/SearchServer?lang=de&searchText=%QUERY&type=locations',
+       url: API3_URL + '/rest/services/api/SearchServer?lang=de&searchText=%QUERY&type=locations',
        wildcard: '%QUERY',
 		   filter: function(locations) {
 			   var results = [];
