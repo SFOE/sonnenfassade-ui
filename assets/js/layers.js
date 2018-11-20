@@ -7,7 +7,6 @@
 
 var getLayersConfig = function(lang) {
   var url = API3_URL + '/rest/services/api/MapServer/layersConfig?lang=' + lang;
-  //var url = 'http://www.energiestadtfinder.ch/sonnenfassade/mylayerconfig.json';
   return $.getJSON(url);
 };
 
@@ -63,21 +62,21 @@ var getWmts = function(layer, options) {
  * @param {Object} options source options.
  * @return {ol.source.TileWMS}
  */
-var getWms = function(layer, options) {
-  return new ol.source.TileWMS({
-    crossOrigin: 'anonymous',
-    wrapX: false,
-    gutter: options['gutter'] || 0,
-    attributions: [
-      new ol.Attribution({html: '<a href="' +
-        options['attributionUrl'] +
-        '" target="new">' +
-        options['attribution'] + '</a>'})
-    ],
-    params: {
-      'LAYERS': options['wmsLayers'] || layer,
-      'TIME': options['timestamp']
-    },
-    url: options['wmsUrl'].split('?')[0].replace('http:',location.protocol)
-  });
-};
+//var getWms = function(layer, options) {
+//  return new ol.source.TileWMS({
+//    crossOrigin: 'anonymous',
+//    wrapX: false,
+//    gutter: options['gutter'] || 0,
+//    attributions: [
+//      new ol.Attribution({html: '<a href="' +
+//        options['attributionUrl'] +
+//        '" target="new">' +
+//        options['attribution'] + '</a>'})
+//    ],
+//    params: {
+//      'LAYERS': options['wmsLayers'] || layer,
+//      'TIME': options['timestamp']
+//    },
+//    url: options['wmsUrl'].split('?')[0].replace('http:',location.protocol)
+//  });
+//};

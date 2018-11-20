@@ -17,18 +17,18 @@ function getMunicipality(coordx, coordy) {
             '&lang=de';
 
     $.getJSON(query).then(function(data) { //success(data)
-      	if (data.results && data.results.length > 0) {
+        if (data.results && data.results.length > 0) {
 
-	        $.each(data.results, function(key, val) {
-	    
-	          MunicipalityNumber = val.featureId;
+          $.each(data.results, function(key, val) {
+      
+            MunicipalityNumber = val.featureId;
 
-	        });
+          });
         
-	    }
-	    //kick off whatever needs the value once you have it...which is when the server responds with data.
-	    
-	    getEVUs(MunicipalityNumber);
+      }
+      //kick off whatever needs the value once you have it...which is when the server responds with data.
+      
+      getEVUs(MunicipalityNumber);
 
     });
 
@@ -43,16 +43,16 @@ function getEVUs(MunicipalityNumber) {
 
   if (MunicipalityNumber) {
 
-	query = "https://opendata.vese.ch/pvtarif/api/getData/muni?idofs=" + MunicipalityNumber + "&licenseKey=110xketkdbydpa8ph7s36nmeqxrq5eg8f1xbzz1g";
+  query = "https://opendata.vese.ch/pvtarif/api/getData/muni?idofs=" + MunicipalityNumber + "&licenseKey=110xketkdbydpa8ph7s36nmeqxrq5eg8f1xbzz1g";
 
     $.getJSON(query).then(function(data) {
 
-     	if (data.evus && data.evus.length > 0) {
+      if (data.evus && data.evus.length > 0) {
 
         EvuData = data.evus;
         
-	    }
-	    getTarifData(EvuData);
+      }
+      getTarifData(EvuData);
         
     });
 
@@ -73,8 +73,8 @@ function getTarifData(EvuData) {
 
         if ($.contains(document.body, document.getElementById("stromtarifEWZahl"))) {
 
-          if (Number(document.getElementById("stromtarifEWZahl").innerHTML) < Number(data.energyAuto1)) {
-            document.getElementById("stromtarifEWZahl").innerHTML = data.energyAuto1;
+          if (Number(document.getElementById("stromtarifEWZahl").innerHTML) < (Number(data.energy1) + Number(data.eco1))) {
+            document.getElementById("stromtarifEWZahl").innerHTML = (Number(data.energy1) + Number(data.eco1));
             document.getElementById("stromtarifEWEinheit").innerHTML = " " + translator.get('stromtarifEWEinheit');
             document.getElementById("stromtarifEW").innerHTML = data.nomEw;
             document.getElementById("stromtarifEWlink").href = data.link;
