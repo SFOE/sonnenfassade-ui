@@ -29,10 +29,14 @@ var onAddressFound = function(map, marker, address, autoSearchRoof, roofSearchTo
     $(document.body).removeClass('localized-error');
     $(document.body).removeClass('no-address');
     
+    var langs = ['de', 'fr', 'it', 'en'];
+    var permalink = addPermalink();
+    var lang = (langs.indexOf(permalink.lang) != -1) ? permalink.lang : langs[0];
+
     // Search best roof at this address
     if (autoSearchRoof) {
       marker.setPosition(coord);
-      searchFeaturesFromCoord(map, coord, roofSearchTolerance).then(function(data) {
+      searchFeaturesFromCoord(map, coord, roofSearchTolerance, lang).then(function(data) {
         onRoofFound(map, marker, data.results[0], true);
         // If no roof found zoom on the marker
         if (!data.results.length) {
@@ -640,7 +644,7 @@ var init = function(nointeraction) {
     map.on('singleclick', function(evt){
       var coord = evt.coordinate;
       //Do roof search explicitely
-      searchFeaturesFromCoord(map, coord, 2.0).then(function(data) {
+      searchFeaturesFromCoord(map, coord, 2.0, lang).then(function(data) {
         onRoofFound(map, marker, data.results[0], false); //???????
         // We call the geocode function here to get the
         // address information for the clicked point using
@@ -817,9 +821,9 @@ var init = function(nointeraction) {
 }
 
 
-function UpdateURLinBrowser(featureId) {
+function UpdateURLinBrowser(featureId, lang) {
 
   var stateObj = { foo: "bar" };
-  history.pushState(stateObj, "", "index.html?featureId=" + featureId);
+  history.pushState(stateObj, "", "index.html?featureId=" + featureId + "&lang=" + lang);
 
 }
