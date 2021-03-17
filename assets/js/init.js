@@ -9,8 +9,8 @@ var onAddressFound = function(map, marker, address, autoSearchRoof, roofSearchTo
     if (!address.attrs) { // Address comes from geolocation
       coord = [address.geometry.x, address.geometry.y];
       var attr = address.attributes;
-      label = attr.strname1 + ' ' + (attr.deinr || '') +
-          ' <br>' + attr.plz4 + ' ' + attr.plzname;
+      label = attr.strname_deinr + ' <br>' + attr.dplz4 + ' ' + attr.dplzname;
+      //label = attr.strname1 + ' ' + (attr.deinr || '') + ' <br>' + attr.plz4 + ' ' + attr.plzname;
     } else { // Address comes from search box
       // WARNING! Coordinates are inverted here.
       coord = [address.attrs.y, address.attrs.x];
@@ -458,7 +458,7 @@ var updateSolarrechnerLinks = function () {
       parameters += '&POSTLEITZAHL=' + lastPlz;
       parameters += '&X=' + lastcoordx;
       parameters += '&Y=' + lastcoordy;
-      parameters += '&ADRESSE=' + lastaddress;
+      //parameters += '&ADRESSE=' + lastaddress;
     }
 
     if (lastRoof) {
@@ -466,6 +466,7 @@ var updateSolarrechnerLinks = function () {
       parameters += '&NEIGUNG=90';
       parameters += '&AUSRICHTUNG=' + lastRoof.attributes.ausrichtung;
       parameters += '&BEDARF_WARMWASSER=' + lastRoof.attributes.bedarf_warmwasser;
+      parameters += '&DACH_ID=' + lastRoof.featureId;
       lastFlaeche = Math.round(lastRoof.attributes.flaeche);
     }
 
@@ -476,13 +477,13 @@ var updateSolarrechnerLinks = function () {
     var linkESRechner = '';
 
     if (lang == 'de') {
-      linkESRechner = 'https://www.energieschweiz.ch/page/de-ch/solarrechner/';
+      linkESRechner = 'https://energieschweiz.ch/tools/solarrechner/';
     } else if (lang == 'fr') {
-      linkESRechner = 'https://www.suisseenergie.ch/page/fr-ch/calculateur-solaire/';
+      linkESRechner = 'https://suisseenergie.ch/tools/calculateur-solaire/';
     } else if (lang == 'it') {
-      linkESRechner = 'https://www.svizzeraenergia.ch/page/it-ch/calcolatore-solare/';
+      linkESRechner = 'https://svizzeraenergia.ch/tools/calcolatore-solare/';
     } else if (lang == 'en') {
-      linkESRechner = 'https://www.energieschweiz.ch/page/de-ch/solarrechner/';
+      linkESRechner = 'https://energieschweiz.ch/tools/solarrechner/';
     }    
       
     if ($.contains(document.body, document.getElementById("buttonSolRPV100"))) {
